@@ -1,0 +1,46 @@
+﻿@model ComicBookGallery.Models.Series
+
+    @{
+        ViewBag.Title = Model.Title;
+        ViewBag.ShowBackBar = true;
+    }
+
+    <h2>@ViewBag.Title</h2>
+
+    <div class="well">
+        <h5>Description</h5>
+        <div>
+            @Html.Raw(Model.DescriptionHtml)
+        </div>
+    </div>
+
+    <h4>Comic Books Available in This Series</h4>
+
+    @*<div class="row">
+        <div class="col-md-3">
+            <h4><a href="/ComicBooks/Detail/1">The Amazing Spider-Man #700</a></h4>
+            <a href="/ComicBooks/Detail/1">
+                <img src="/Images/the-amazing-spider-man-700.jpg"
+                     alt="The Amazing Spider-Man #700" class="img-responsive" />
+            </a>
+        </div>
+        ...
+    </div>*@
+
+    <div class="row">
+        @foreach (var comicBook in Model.Issues)
+        {
+            <div class="col-md-3">
+                <h4>
+                    @Html.ActionLink(comicBook.DisplayText, "Detail", "ComicBooks",
+               new { id = comicBook.ID }, null)
+            </h4>
+            <a href="@Url.Action("Detail", "ComicBooks", new { id = comicBook.ID })">
+                <img src="/Images/@comicBook.CoverImageFileName"
+                     alt="@comicBook.DisplayText"
+                     class="img-responsive" />
+            </a>
+        </div>
+    }
+
+    </div>
