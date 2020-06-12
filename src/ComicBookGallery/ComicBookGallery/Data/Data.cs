@@ -84,7 +84,7 @@ namespace ComicBookGallery.Data
             };
 
             // feed data to properties
-            Series = Series;
+            Series = series;
             ComicBooks = comicBooks;
         }
 
